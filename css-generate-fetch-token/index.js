@@ -41,17 +41,18 @@ var fs_1 = require("fs");
 var node_fetch_1 = require("node-fetch");
 function generateFetch(tokenLocation) {
     return __awaiter(this, void 0, void 0, function () {
-        var token, id, secret, idp, dpopKey, authString, tokenUrl, response, _a, _b, _c, _d, accessToken, authenticatedFetch;
+        var token, id, secret, idp, dpopKey, authString, tokenUrl, response, _a, _b, accessToken, authenticatedFetch;
+        var _c, _d;
         return __generator(this, function (_e) {
             switch (_e.label) {
                 case 0:
-                    token = JSON.parse(fs_1.readFileSync(tokenLocation, { encoding: "utf8" }));
+                    token = JSON.parse((0, fs_1.readFileSync)(tokenLocation, { encoding: "utf8" }));
                     id = token.id, secret = token.secret, idp = token.idp;
-                    return [4 /*yield*/, solid_client_authn_core_1.generateDpopKeyPair()];
+                    return [4 /*yield*/, (0, solid_client_authn_core_1.generateDpopKeyPair)()];
                 case 1:
                     dpopKey = _e.sent();
-                    authString = encodeURIComponent(id) + ":" + encodeURIComponent(secret);
-                    tokenUrl = idp + ".oidc/token";
+                    authString = "".concat(encodeURIComponent(id), ":").concat(encodeURIComponent(secret));
+                    tokenUrl = "".concat(idp, ".oidc/token");
                     _a = node_fetch_1["default"];
                     _b = [tokenUrl];
                     _c = {
@@ -59,10 +60,10 @@ function generateFetch(tokenLocation) {
                     };
                     _d = {
                         // The header needs to be in base64 encoding.
-                        authorization: "Basic " + Buffer.from(authString).toString('base64'),
+                        authorization: "Basic ".concat(Buffer.from(authString).toString('base64')),
                         'content-type': 'application/x-www-form-urlencoded'
                     };
-                    return [4 /*yield*/, solid_client_authn_core_1.createDpopHeader(tokenUrl, 'POST', dpopKey)];
+                    return [4 /*yield*/, (0, solid_client_authn_core_1.createDpopHeader)(tokenUrl, 'POST', dpopKey)];
                 case 2: return [4 /*yield*/, _a.apply(void 0, _b.concat([(_c.headers = (_d.dpop = _e.sent(),
                             _d),
                             _c.body = 'grant_type=client_credentials&scope=webid',
@@ -72,7 +73,7 @@ function generateFetch(tokenLocation) {
                     return [4 /*yield*/, response.json()];
                 case 4:
                     accessToken = (_e.sent()).access_token;
-                    return [4 /*yield*/, solid_client_authn_core_1.buildAuthenticatedFetch(node_fetch_1["default"], accessToken, { dpopKey: dpopKey })];
+                    return [4 /*yield*/, (0, solid_client_authn_core_1.buildAuthenticatedFetch)(node_fetch_1["default"], accessToken, { dpopKey: dpopKey })];
                 case 5:
                     authenticatedFetch = _e.sent();
                     return [2 /*return*/, authenticatedFetch];

@@ -80,13 +80,13 @@ function handleAction() {
                     _a.label = 2;
                 case 2:
                     _a.trys.push([2, 4, , 5]);
-                    return [4 /*yield*/, _1.downloadSolidRDFResources(options.root, options.token, options.out, options.meta || false)];
+                    return [4 /*yield*/, (0, _1.downloadSolidRDFResources)(options.root, options.token, options.out, options.meta || false)];
                 case 3:
                     _a.sent();
                     return [3 /*break*/, 5];
                 case 4:
                     e_1 = _a.sent();
-                    console.error("Cannot retrieve documents from pod: " + e_1.message);
+                    console.error("Cannot retrieve documents from pod: ".concat(e_1.message));
                     process.exit(1);
                     return [3 /*break*/, 5];
                 case 5:

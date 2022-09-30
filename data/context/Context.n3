@@ -7,6 +7,6 @@
         a :PublicAccess .
 } .
 
-() log:onAccessSurface {
-    :Charly a :Friend .
-} .
+#() log:onAccessSurface {
+#    :Charly a :Friend .
+#} .

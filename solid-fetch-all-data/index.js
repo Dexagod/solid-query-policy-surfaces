@@ -55,6 +55,7 @@ var __asyncGenerator = (this && this.__asyncGenerator) || function (thisArg, _ar
     function settle(f, v) { if (f(v), q.shift(), q.length) resume(q[0][0], q[0][1]); }
 };
 exports.__esModule = true;
+exports.downloadSolidRDFResources = void 0;
 var css_generate_fetch_token_1 = require("../css-generate-fetch-token");
 var solid_client_1 = require("@inrupt/solid-client");
 var fs_1 = require("fs");
@@ -71,7 +72,7 @@ function downloadSolidRDFResources(podRoot, tokenLocation, storageLocation, incl
                     includeMetadata = includeMetadata || false;
                     if (!storageLocation.endsWith('/'))
                         throw new Error('Storage location value should end in "/".');
-                    return [4 /*yield*/, css_generate_fetch_token_1["default"](tokenLocation)];
+                    return [4 /*yield*/, (0, css_generate_fetch_token_1["default"])(tokenLocation)];
                 case 1:
                     authenticatedFetch = _b.sent();
                     return [4 /*yield*/, authenticatedFetch('https://publicpod.rubendedecker.be/ruben/')];
@@ -89,7 +90,7 @@ function downloadSolidRDFResources(podRoot, tokenLocation, storageLocation, incl
                     uri = resourceURIs_1_1.value;
                     retrieveDocument(uri, authenticatedFetch, storageLocation, podRoot);
                     if (!includeMetadata) return [3 /*break*/, 7];
-                    return [4 /*yield*/, solid_client_1.getResourceInfo(uri, { fetch: authenticatedFetch })];
+                    return [4 /*yield*/, (0, solid_client_1.getResourceInfo)(uri, { fetch: authenticatedFetch })];
                 case 6:
                     ri = _b.sent();
                     links = ri.internal_resourceInfo.linkedResources;
@@ -136,10 +137,10 @@ function findAllDocumentURIs(containerUrl, authenticatedFetch) {
                     _a.label = 1;
                 case 1:
                     if (!container) return [3 /*break*/, 9];
-                    return [4 /*yield*/, __await(solid_client_1.getSolidDataset(container, { fetch: authenticatedFetch }))];
+                    return [4 /*yield*/, __await((0, solid_client_1.getSolidDataset)(container, { fetch: authenticatedFetch }))];
                 case 2:
                     resourceDS = _a.sent();
-                    resourceURIs = solid_client_1.getContainedResourceUrlAll(resourceDS);
+                    resourceURIs = (0, solid_client_1.getContainedResourceUrlAll)(resourceDS);
                     _i = 0, resourceURIs_2 = resourceURIs;
                     _a.label = 3;
                 case 3:
@@ -175,13 +176,13 @@ function retrieveDocument(url, f, storageLocation, podRoot) {
                 case 1:
                     res = _a.sent();
                     if (!res.ok) {
-                        console.error("Could not retrieve resource at location " + url);
+                        console.error("Could not retrieve resource at location ".concat(url));
                         return [2 /*return*/];
                     }
-                    filepath = "" + storageLocation + url.replace(podRoot, '') + ".n3";
-                    fs_1.mkdirSync(path.dirname(filepath), { recursive: true });
+                    filepath = "".concat(storageLocation).concat(url.replace(podRoot, ''), ".n3");
+                    (0, fs_1.mkdirSync)(path.dirname(filepath), { recursive: true });
                     console.log('Writing to: ', filepath);
-                    fileStream = fs_1.createWriteStream(filepath);
+                    fileStream = (0, fs_1.createWriteStream)(filepath);
                     return [4 /*yield*/, new Promise(function (resolve, reject) {
                             var body = toReadableStream(res.body);
                             body.pipe(fileStream);
@@ -203,5 +204,5 @@ function retrieveDocument(url, f, storageLocation, podRoot) {
  * @returns {NodeJS.ReadableStream}
  */
 function toReadableStream(body) {
-    return require("is-stream")(body) ? body : web_streams_node_1.toNodeReadable(body);
+    return require("is-stream")(body) ? body : (0, web_streams_node_1.toNodeReadable)(body);
 }
