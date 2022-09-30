@@ -1,0 +1,23 @@
+{
+  "name": "css-generate-token",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc index.ts; tsc cli.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/n3": "^1.10.4",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "commander": "^9.4.0",
+    "inquirer": "^8.0.0",
+    "n3": "^1.16.2",
+    "node-fetch": "^2.6.7"
+  }
+}

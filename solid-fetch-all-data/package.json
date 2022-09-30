@@ -1,0 +1,21 @@
+{
+  "name": "solid-fetch-all-data",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc index.ts; tsc cli.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@inrupt/solid-client": "^1.23.3",
+    "commander": "^9.4.1",
+    "inquirer": "^8.2.4",
+    "is-stream": "^2.0.1",
+    "tinyqueue": "^2.0.3",
+    "web-streams-node": "^0.4.0"
+  },
+  "description": ""
+}
