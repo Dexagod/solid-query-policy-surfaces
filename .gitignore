@@ -1,3 +1,4 @@
 **/node_modules/
 data/solid/
 tokens/
+solid-fetch-all-data/*.js
